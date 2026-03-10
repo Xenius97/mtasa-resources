@@ -300,17 +300,20 @@ y=y+B  aTab1.VehicleHealth	= guiCreateLabel ( 0.26, y, 0.25, 0.04, "Vehicle Heal
 						guiComboBoxSetSelected (aTab4.ComboBox,0)
 
 
-				function searchBans()
-				local searchText = guiGetText (aTab4.EditBox)
-					if searchText == "" then
-					triggerServerEvent ( "aSync", localPlayer, "bans" )
-					else
-					local itemBoxSelected = guiComboBoxGetSelected(aTab4.ComboBox)
-					local text = guiComboBoxGetItemText(aTab4.ComboBox, itemBoxSelected)
-					guiGridListClear (aTab4.BansList)
-					triggerServerEvent ( "aSync", localPlayer, "bansearch",{text,searchText})
+				function searchBans(_, state)
+					if state ~= "up" then
+						return
 					end
 
+					local searchText = guiGetText (aTab4.EditBox)
+					if searchText == "" then
+						triggerServerEvent ( "aSync", localPlayer, "bans" )
+					else
+						local itemBoxSelected = guiComboBoxGetSelected(aTab4.ComboBox)
+						local text = guiComboBoxGetItemText(aTab4.ComboBox, itemBoxSelected)
+						guiGridListClear (aTab4.BansList)
+						triggerServerEvent ( "aSync", localPlayer, "bansearch",{text,searchText})
+					end
 				end
 				addEventHandler("onClientGUIClick", aTab4.Button, searchBans,false)
 
@@ -859,7 +862,7 @@ function aPlayerListScroll ( key, state, inc )
 	end
 	local oldsource = source
 	source = aTab1.PlayerList;
-	aClientClick ( "left" )
+	aClientClick ( "left", "up" )
 	source = oldsource
 end
 
@@ -998,8 +1001,8 @@ function aClientDoubleClick ( button )
 	end
 end
 
-function aClientClick ( button )
-	if ( button == "left" ) then
+function aClientClick ( button, state )
+	if ( button == "left" and state == "up" ) then
 		-- TAB 1, PLAYERS
 		if ( getElementParent ( source ) == aTab1.Tab ) then
 			if ( source == aTab1.Messages ) then

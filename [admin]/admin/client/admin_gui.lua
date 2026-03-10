@@ -65,7 +65,11 @@ function guiCreateList(x, y, w, h, tabHeight, header, relative, parent, right)
 	local dropDown = guiCreateStaticImage(absoluteWidth - 20, 0, 20, 20, "client\\images\\dropdown.png", false, list)
 	guiSetProperty(dropDown, 'AlwaysOnTop', 'True')
 	
-	addEventHandler('onClientGUIClick', dropDown, function()
+	addEventHandler('onClientGUIClick', dropDown, function(_, state)
+		if state ~= "up" then
+			return
+		end
+
 		guiListSetVisible(list, true)
 	end, false)
 
@@ -88,7 +92,11 @@ function guiCreateList(x, y, w, h, tabHeight, header, relative, parent, right)
 	guiSetProperty(close, 'AlwaysOnTop', 'True')
 	guiSetAlpha(close, 1)
 	
-	addEventHandler('onClientGUIClick', close, function()
+	addEventHandler('onClientGUIClick', close, function(_, state)
+		if state ~= "up" then
+			return
+		end
+
 		guiListSetVisible(list, false)
 	end, false)
 
@@ -174,8 +182,8 @@ function guiListLoadItems(list)
 	return false
 end
 
-addEventHandler('onClientGUIClick', guiRoot, function(button)
-	if (button == 'left') then
+addEventHandler('onClientGUIClick', guiRoot, function(button, state)
+	if (button == 'left' and state == 'up') then
 		local parent = getElementParent(source)
 		if parent then
 			for list in pairs(lists) do

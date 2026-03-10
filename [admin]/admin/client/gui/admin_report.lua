@@ -92,13 +92,19 @@ function aReportSelectPlayer ( )
 			guiGridListSetItemText(playerList, guiGridListAddRow(playerList), 1, getPlayerName(player), false, false)
 		end
 		local btnSelectPlayer = guiCreateButton(0.57, 0.93, 0.33, 0.05, "Select", true, aSelectPlayer)
-		addEventHandler ( "onClientGUIClick", btnSelectPlayer, function ( )
+		addEventHandler ( "onClientGUIClick", btnSelectPlayer, function ( _, state )
+			if state ~= "up" then
+				return
+			end
 			guiSetText ( aReportPlayer, guiGridListGetItemText ( playerList, guiGridListGetSelectedItem ( playerList ), 1 ) )
 			destroyElement ( aSelectPlayer )
 			aSelectPlayer = nil
 		end, false )
 		local btnClose = guiCreateButton(0.10, 0.93, 0.33, 0.05, "Close", true, aSelectPlayer)
-		addEventHandler ( "onClientGUIClick", btnClose, function ( )
+		addEventHandler ( "onClientGUIClick", btnClose, function ( _, state )
+			if state ~= "up" then
+				return
+			end
 			destroyElement ( aSelectPlayer )
 			aSelectPlayer = nil
 		end, false )
@@ -130,14 +136,14 @@ function aClientReportDoubleClick ( button )
 	end
 end
 
-function aClientReportClick ( button )
+function aClientReportClick ( button, state )
 	if ( source == aReportCategory ) then
 		guiBringToFront ( aReportDropDown )
 	end
 	if ( source ~= aReportCategories ) then
 		guiSetVisible ( aReportCategories, false )
 	end
-	if ( button == "left" ) then
+	if ( button == "left" and state == "up" ) then
 		if ( source == aReportAccept ) then
 			if ( ( string.len ( guiGetText ( aReportSubject ) ) < 1 ) or ( string.len ( guiGetText ( aReportMessage ) ) < 5 ) ) then
 				aMessageBox ( "error", "Subject/Message missing." )

@@ -70,8 +70,8 @@ function aClientSkinDoubleClick ( button )
 	end
 end
 
-function aClientSkinClick ( button )
-	if ( button == "left" ) then
+function aClientSkinClick ( button, state )
+	if ( button == "left" and state == "up" ) then
 		if ( source == aSkinAccept ) then
 			if ( tonumber ( guiGetText ( aSkinID ) ) ) then
 					triggerServerEvent ( "aPlayer", localPlayer, aSkinSelect, "setskin", tonumber ( guiGetText ( aSkinID ) ) )

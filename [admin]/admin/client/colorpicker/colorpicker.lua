@@ -62,8 +62,8 @@ function colorPicker.create(id, start, title)
   cp.handlers.render = function() cp:render() end
   cp.handlers.guiFocus = function() cp:guiFocus() end
   cp.handlers.guiBlur = function() cp:guiBlur() end
-  cp.handlers.pickColor = function() cp:pickColor() end
-  cp.handlers.destroy = function() cp:destroy() end
+  cp.handlers.pickColor = function(_, state) if state == "up" then cp:pickColor() end end
+  cp.handlers.destroy = function(_, state) if state == "up" then cp:destroy() end end
 
   addEventHandler("onClientGUIMouseDown", cp.gui.svmap, cp.handlers.mouseDown, false)
   addEventHandler("onClientMouseLeave", cp.gui.svmap, cp.handlers.mouseSnap, false)

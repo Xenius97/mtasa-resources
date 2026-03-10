@@ -71,8 +71,8 @@ function aModdetailsSync ( action, list, player )
 	end
 end
 
-function aClientModdetailsClick ( button )
-	if ( button == "left" ) then
+function aClientModdetailsClick ( button, state )
+	if ( button == "left" and state == "up" ) then
 		if ( source == aModdetailsClose ) then
 			aViewModdetailsClose ( false )
 		elseif ( source == aModdetailsRefresh ) then

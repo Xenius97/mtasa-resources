@@ -205,9 +205,9 @@ function aClientACLDoubleClick ( button )
 	end
 end
 
-function aClientACLClick ( button )
+function aClientACLClick ( button, state )
 	if ( source ~= aACLDropList ) then guiSetVisible ( aACLDropList, false ) end
-	if ( button == "left" ) then
+	if ( button == "left" and state == "up" ) then
 		if ( source == aACLExit ) then
 			aACLClose ( false )
 		elseif ( source == aACLCreateGroup ) then

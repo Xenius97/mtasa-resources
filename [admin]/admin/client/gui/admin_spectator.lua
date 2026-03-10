@@ -157,19 +157,19 @@ function aSpectator.ClientDoubleClick ( button )
 	end
 end
 
-function aSpectator.ClientClick ( button )
+function aSpectator.ClientClick ( button, state )
 	if ( source == aSpectator.Slaps ) then return end
 	guiSetVisible ( aSpectator.Slaps, false )
-	if ( button == "left" ) then
+	if ( button == "left" and state == "up" ) then
 		if ( source == aSpectator.Back ) then aSpectator.Close ( false )
-		elseif ( source == aSpectator.Ban ) then triggerEvent ( "onClientGUIClick", aTab1.Ban, "left" )
-		elseif ( source == aSpectator.Kick ) then triggerEvent ( "onClientGUIClick", aTab1.Kick, "left" )
-		elseif ( source == aSpectator.Freeze ) then triggerEvent ( "onClientGUIClick", aTab1.Freeze, "left" )
-		elseif ( source == aSpectator.SetSkin ) then triggerEvent ( "onClientGUIClick", aTab1.SetSkin, "left" )
-		elseif ( source == aSpectator.SetHealth ) then triggerEvent ( "onClientGUIClick", aTab1.SetHealth, "left" )
-		elseif ( source == aSpectator.SetArmour ) then triggerEvent ( "onClientGUIClick", aTab1.SetArmour, "left" )
-		elseif ( source == aSpectator.SetStats ) then triggerEvent ( "onClientGUIClick", aTab1.SetStats, "left" )
-		elseif ( source == aSpectator.Slap ) then triggerEvent ( "onClientGUIClick", aTab1.Slap, "left" )
+		elseif ( source == aSpectator.Ban ) then triggerEvent ( "onClientGUIClick", aTab1.Ban, "left", "up" )
+		elseif ( source == aSpectator.Kick ) then triggerEvent ( "onClientGUIClick", aTab1.Kick, "left", "up" )
+		elseif ( source == aSpectator.Freeze ) then triggerEvent ( "onClientGUIClick", aTab1.Freeze, "left", "up" )
+		elseif ( source == aSpectator.SetSkin ) then triggerEvent ( "onClientGUIClick", aTab1.SetSkin, "left", "up" )
+		elseif ( source == aSpectator.SetHealth ) then triggerEvent ( "onClientGUIClick", aTab1.SetHealth, "left", "up" )
+		elseif ( source == aSpectator.SetArmour ) then triggerEvent ( "onClientGUIClick", aTab1.SetArmour, "left", "up" )
+		elseif ( source == aSpectator.SetStats ) then triggerEvent ( "onClientGUIClick", aTab1.SetStats, "left", "up" )
+		elseif ( source == aSpectator.Slap ) then triggerEvent ( "onClientGUIClick", aTab1.Slap, "left", "up" )
 		elseif ( source == aSpectator.Next ) then aSpectator.SwitchPlayer ( 1 )
 		elseif ( source == aSpectator.Prev ) then aSpectator.SwitchPlayer ( -1 )
 		elseif ( source == aSpectator.PlayerList ) then

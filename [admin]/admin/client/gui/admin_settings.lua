@@ -139,8 +139,8 @@ function aClientSettingsDoubleClick ( button )
 	end
 end
 
-function aClientSettingsClick ( button )
-	if ( button == "left" ) then
+function aClientSettingsClick ( button, state )
+	if ( button == "left" and state == "up" ) then
 		if ( source == aSettingsExit ) then
 			aSettingsClose ( false )
 		end

@@ -59,8 +59,8 @@ end
 addEvent("getMaps_c", true)
 addEventHandler("getMaps_c", localPlayer, loadMaps)
 
-function guiClick(button)
-	if button == "left" then
+function guiClick(button, state)
+	if button == "left" and state == "up" then
 		if ( getElementParent ( source ) == aTabMap.Tab ) then
 			if source == aTabMap.RefreshList then
 				guiGridListClear(aTabMap.MapList)

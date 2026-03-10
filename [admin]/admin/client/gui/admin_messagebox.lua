@@ -107,8 +107,8 @@ function aMessageBoxAccept ( key, state )
 	end
 end
 
-function aMessageBoxClick ( button )
-	if ( button == "left" ) then
+function aMessageBoxClick ( button, state )
+	if ( button == "left" and state == "up" ) then
 		if ( source == aMessageYes ) then
 			if ( aMessageAction ~= nil ) then
 				runMessageAction(aMessageAction)

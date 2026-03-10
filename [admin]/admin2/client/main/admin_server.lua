@@ -191,8 +191,8 @@ function aServerTab.Create(tab)
     aServerTab.onRefresh()
 end
 
-function aServerTab.onClientClick(button)
-    if (button == "left") then
+function aServerTab.onClientClick(button, state)
+    if (button == "left" and state == "up") then
         if (source == aServerTab.SetGameType) then
             local gametype = inputBox("Game Type", "Enter game type:")
             if (gametype) then

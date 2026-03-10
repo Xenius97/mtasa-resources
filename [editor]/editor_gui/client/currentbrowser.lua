@@ -154,7 +154,11 @@ function isInArray(array,elementName,resourceName )
 	return false
 end
 
-function currentBrowser.isolateClick ()
+function currentBrowser.isolateClick (button, state)
+	if (state ~= "up") then
+		return
+	end
+
 	local cellrow = currentBrowserGUI.gridlist:getSelected()
 	local doIsolate = guiCheckBoxGetSelected ( currentBrowserGUI.isolate )
 	if cellrow ~= 0 then
@@ -378,7 +382,10 @@ function clearEditorElements ( elemTable )
 end
 
 addEventHandler ( "onClientGUIClick", root,
-function()
+function(button, state)
+	if state ~= "up" then
+		return
+	end
 	if source == currentBrowserGUI.search then
 		local text = guiGetText ( source )
 		if text == "Search..." or text == "Search" then
@@ -397,7 +404,7 @@ function showCurrentBrowser ( elementArray, ignoredElements, elementType, resour
 	---element array syntax element[n].resourceName, element[n].elementName
 	-- setGUIShowing(false)
 	if currentBrowser.showing then
-		closeCurrentBrowser()
+		closeCurrentBrowser("left", "up")
 	end
 	currentBrowser.showing = true
 	ignoredTable = {}
@@ -438,8 +445,8 @@ function showCurrentBrowser ( elementArray, ignoredElements, elementType, resour
 	return returnValue
 end
 
-function closeCurrentBrowser()
-    if (not currentBrowser.showing) then return end
+function closeCurrentBrowser(button, state)
+    if (not currentBrowser.showing or state ~= "up") then return end
     currentBrowser.showing = false
     cSelectedElement = false
     if (callbackFunction) then
@@ -470,10 +477,14 @@ function closeCurrentBrowser()
     removeEventHandler("onClientElementDestroyed", root, currentBrowser.prepareSearch)
 end
 
-function restoreSelectedElement()
+function restoreSelectedElement(button, state)
+	if state ~= "up" then
+		return
+	end
+
 	if cSelectedElement then
 		editor_main.destroySelectedElement()
-		closeCurrentBrowser()
+		closeCurrentBrowser("left", "up")
 		
 		setTimer(function()
 			showCurrentBrowser()

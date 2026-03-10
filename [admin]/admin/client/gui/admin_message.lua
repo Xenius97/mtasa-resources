@@ -54,8 +54,8 @@ function aViewMessage ( id )
 	end
 end
 
-function aViewSuspectInfo ( button )
-	if ( button == "left" ) then
+function aViewSuspectInfo ( button, state )
+	if ( button == "left" and state == "up" ) then
 		if ( source == aViewMessageSuspect ) then
 			if ( aSuspectInfo == nil ) then
 				local suspectInfo = _messages[viewID].suspect
@@ -63,7 +63,11 @@ function aViewSuspectInfo ( button )
 					local x, y = guiGetScreenSize()
 					aSuspectInfo = guiCreateWindow(x / 2 - 145, y / 2 - 192.5, 290, 385, "Player information", false)
 					local btnClose = guiCreateButton(0.365, 0.88, 0.27, 0.10, "Close", true, aSuspectInfo)
-					addEventHandler("onClientGUIClick", btnClose, function()
+					addEventHandler("onClientGUIClick", btnClose, function(_, state)
+						if state ~= "up" then
+							return
+						end
+						
 						destroyElement(aSuspectInfo)
 						aSuspectInfo = nil
 					end, false)
@@ -112,8 +116,8 @@ function aViewMessageClose ( destroy )
 	end
 end
 
-function aClientMessageClick ( button )
-	if ( button == "left" ) then
+function aClientMessageClick ( button, state )
+	if ( button == "left" and state == "up" ) then
 		if ( source == aViewMessageCloseB ) then
 			aViewMessageClose ( false )
 		end

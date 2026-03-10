@@ -202,12 +202,12 @@ function guiSetContextMenu(element, menu)
     addEventHandler(
         "onClientGUIClick",
         element,
-        function(button)
+        function(button, state)
             contextSource = source
             if (getElementType(source) == "gui-gridlist" and guiGridListGetSelectedItem(source) == -1) then
                 return
             end
-            if (button == "right") then
+            if (button == "right" and state == "up") then
                 local sx, sy = guiGetScreenSize()
                 local x, y = getCursorPosition()
                 x, y = sx * x, sy * y
@@ -240,7 +240,10 @@ function guiSetContextMenu(element, menu)
     addEventHandler(
         "onClientGUIClick",
         menu,
-        function(button)
+        function(button, state)
+            if state ~= "up" then
+                return
+            end
             guiSetVisible(menu, false)
         end
     )

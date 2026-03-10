@@ -88,8 +88,8 @@ function aBanDetailsClose ( destroy )
 	end
 end
 
-function aClientBanClick ( button )
-	if ( button == "left" ) then
+function aClientBanClick ( button, state )
+	if ( button == "left" and state == "up" ) then
 		if ( source == aBanClose ) then
 			aBanDetailsClose ( false )
 		elseif ( source == aBanCopy ) then

@@ -82,9 +82,12 @@ function aBlockModsTab.onMemoDefinitionChanged(element)
 end
 
 
-function aBlockModsTab.onClientGUIClick()
-	local element = source
+function aBlockModsTab.onClientGUIClick(_, state)
+	if state ~= "up" then
+		return
+	end
 
+	local element = source
 	local typeNew = aBlockModsTab.getTypeFromGui()
 	local typeCurrent = getPanelSetting( "blockmods.type" )
 	if typeNew ~= typeCurrent then

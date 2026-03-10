@@ -66,8 +66,8 @@ function aClientInteriorDoubleClick ( button )
 	end
 end
 
-function aClientInteriorClick ( button )
-	if ( button == "left" ) then
+function aClientInteriorClick ( button, state )
+	if ( button == "left" and state == "up" ) then
 		if ( source == aInteriorSelect ) then
 			if ( guiGridListGetSelectedItem ( aInteriorList ) ~= -1 ) then
 				triggerServerEvent ( "aPlayer", localPlayer, aInteriorSelectPointer, "setinterior", guiGridListGetItemText ( aInteriorList, guiGridListGetSelectedItem ( aInteriorList ), 2 ) )

@@ -85,8 +85,8 @@ function aClientMessagesDoubleClick ( button )
 	end
 end
 
-function aClientMessagesClick ( button )
-	if ( button == "left" ) then
+function aClientMessagesClick ( button, state )
+	if ( button == "left" and state == "up" ) then
 		if ( source == aMessagesClose ) then
 			aViewMessagesClose ( false )
 		elseif ( source == aMessagesRefresh ) then

@@ -217,9 +217,9 @@ function aClientVehicleDoubleClick ( button )
 	end
 end
 
-function aClientVehicleClick ( button )
+function aClientVehicleClick ( button, state )
 	if ( source ~= aVehiclePaintjobList ) then guiSetVisible ( aVehiclePaintjobList, false ) end
-	if ( button == "left" ) then
+	if ( button == "left" and state == "up" ) then
 		for id, element in ipairs ( aVehicleUpgrades ) do
 			if ( source ~= element.list ) then guiSetVisible ( element.list, false ) end
 			if ( source == element.edit ) then

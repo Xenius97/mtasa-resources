@@ -75,8 +75,8 @@ function aClientTeamDoubleClick ( button )
 	end
 end
 
-function aClientTeamClick ( button )
-	if ( button == "left" ) then
+function aClientTeamClick ( button, state )
+	if ( button == "left" and state == "up" ) then
 		if ( source == aTeamNew ) then
 			aNewTeamShow ( true )
 		elseif ( source == aTeamRefresh or source == aTeamShowColor ) then

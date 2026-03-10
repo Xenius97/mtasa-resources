@@ -71,9 +71,12 @@ function aServerConfigTab.onMemoDefinitionChanged(element)
 end
 
 
-function aServerConfigTab.onClientGUIClick()
-	local element = source
+function aServerConfigTab.onClientGUIClick(_, state)
+	if state ~= "up" then
+		return
+	end
 
+	local element = source
 	local typeNew = aServerConfigTab.getTypeFromGui()
 	local typeCurrent = getPanelSetting( "minclientconfig.type" )
 	if typeNew ~= typeCurrent then

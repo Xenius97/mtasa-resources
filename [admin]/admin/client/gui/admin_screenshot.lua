@@ -63,8 +63,8 @@ function aScreenShotsDoubleClick (button)
 	end
 end
 
-function aScreenShotsClick (button)
-	if button == "left" then
+function aScreenShotsClick (button, state)
+	if button == "left" and state == "up" then
 		if source == aScreenShotClose then
 			aPlayerScreenShotClose()
 		elseif source == aScreenShotNew then

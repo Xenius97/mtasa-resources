@@ -94,7 +94,11 @@ function aInputBox ( title, message, default, action, vOne, vTwo, defaultNick, d
 end
 
 addEventHandler("onClientGUIClick", guiRoot,
-    function()
+    function(_, state)
+        if state ~= "up" then
+            return
+        end
+
         if source == banNickEdit then
             if guiGetText(banNickEdit) == "Nick" then
                 guiSetText(banNickEdit, "")
@@ -120,8 +124,8 @@ function aInputBoxClose ( destroy )
 	end
 end
 
-function aInputBoxClick ( button )
-	if ( button == "left" ) then
+function aInputBoxClick ( button, state )
+	if ( button == "left" and state == "up" ) then
 		if ( source == aInputOk ) then
 
 			if (aInputAction == "kickPlayer") then
@@ -321,8 +325,8 @@ function aBanInputBoxAccepted ()
 	aBanInputBoxFinish()
 end
 
-function aBanInputBoxClick ( button )
-	if ( button == "left" ) then
+function aBanInputBoxClick ( button, state )
+	if ( button == "left" and state == "up" ) then
 		if ( source == aBanInputOk ) then
 			aBanInputBoxFinish()
 			aBanInputPlayer = nil
@@ -479,8 +483,8 @@ function aMuteInputBoxClose ( destroy )
 	end
 end
 
-function aMuteInputBoxClick ( button )
-	if ( button == "left" ) then
+function aMuteInputBoxClick ( button, state )
+	if ( button == "left" and state == "up" ) then
 		if ( source == aMuteInputOk ) then
 			aMuteInputBoxFinish()
 			aMuteInputPlayer = nil
